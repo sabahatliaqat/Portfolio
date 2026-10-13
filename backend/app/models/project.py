@@ -4,7 +4,7 @@ from app.core.database import Base
 
 
 class Project(Base):
-    __tablename__ = "projects"
+    __tablename__ = "project"
 
     id: Mapped[int] = mapped_column(primary_key=True, index=True)
     title: Mapped[str] = mapped_column(String(100), unique=True, index=True)
@@ -16,3 +16,4 @@ class Project(Base):
     live_url: Mapped[str | None] = mapped_column(String(250), nullable=True)
 
     is_featured: Mapped[bool] = mapped_column(Boolean, default=False)
+    
