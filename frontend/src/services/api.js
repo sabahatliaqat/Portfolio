@@ -1,32 +1,42 @@
+
 import axios from 'axios';
 
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:8000/api/v1"; // Replace with your backend API base URL
+const API_BASE_URL = 'http://127.0.0.1:8000/api/v1';
 
-// Create a base Axios instance
 const api = axios.create({
     baseURL: API_BASE_URL,
+    timeout: 10000,
+    headers: {
+        'Content-Type': 'application/json',
+    },
 });
 
-// Function to fetch skills
 export const getSkills = async () => {
     const response = await api.get('/skills');
     return response.data;
 };
 
-
-// Function to fetch projects
 export const getProjects = async () => {
     const response = await api.get('/projects');
     return response.data;
 };
 
-// Function to ask question to AI Assistant
+export const getEducation = async () => {
+    const response = await api.get('/education');
+    return response.data;
+};
+
+export const getExperience = async () => {
+    const response = await api.get('/experience');
+    return response.data;
+};
+
 export const askAI = async (question, history = []) => {
     const response = await api.post('/chat', {
         question,
-        history
+        history,
     });
     return response.data;
-}
+};
 
 export default api;
